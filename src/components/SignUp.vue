@@ -16,6 +16,7 @@
 
 <script>
 import { ref } from 'vue';
+import { auth } from '../firebase/config';
 
 export default {
   setup() {
@@ -24,8 +25,11 @@ export default {
     let email = ref('');
     let password = ref('');
 
-    let signUp = () => {
-      console.log(displayName.value, email.value, password.value);
+    let signUp = async () => {
+      // console.log(displayName.value, email.value, password.value);
+    
+      
+
     }
 
     return { displayName, email, password, signUp }
