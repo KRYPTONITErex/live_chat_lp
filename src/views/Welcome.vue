@@ -24,7 +24,7 @@ export default {
     LogIn, SignUp },
 
     setup() {
-      let showLoginSignup = ref(true)
+      let showLoginSignup = ref(false)
 
       return { showLoginSignup }
     }
