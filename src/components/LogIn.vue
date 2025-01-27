@@ -20,7 +20,8 @@
   import useSignin from '../composables/useSignin';
   
   export default {
-    setup() {
+    setup(props, context) {
+
   
       let email = ref('');
       let password = ref('');
@@ -34,6 +35,8 @@
         let res = await signIN(email.value, password.value);
         if(res){
           console.log(res.user);
+          context.emit('enterChatroom')
+
         }
        
       }
