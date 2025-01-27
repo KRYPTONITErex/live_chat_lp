@@ -7,7 +7,7 @@
   </div>
 
   <div v-if="!showLoginSignup">
-    <LogIn></LogIn>
+    <LogIn @enterChatroom="enterChatroom"></LogIn>
     <p>Don't have an account?<span @click="showLoginSignup=!showLoginSignup"> Sign Up ...</span></p>
   </div>
 
@@ -18,6 +18,7 @@
 import { ref } from 'vue';
 import LogIn from '../components/LogIn'
 import SignUp from '../components/SignUp'
+import { useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -25,8 +26,12 @@ export default {
 
     setup() {
       let showLoginSignup = ref(false)
+      let router = useRouter()
+      let enterChatroom = () => {
+        router.push({ name: 'Chatroom' })
+      }
 
-      return { showLoginSignup }
+      return { showLoginSignup , enterChatroom }
     }
 
 }
