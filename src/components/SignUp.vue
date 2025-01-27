@@ -7,6 +7,8 @@
     <input type="email" placeholder="email" v-model="email" id="email">
     <input type="password" placeholder="password" v-model="password" id="password">
 
+    <div v-if="error" class="error">{{ error }}</div>
+
     <button class="button">Sign Up</button>
 
 
@@ -16,7 +18,8 @@
 
 <script>
 import { ref } from 'vue';
-import { auth } from '../firebase/config';
+
+import useSignup from '../composables/useSignup';
 
 export default {
   setup() {
@@ -25,26 +28,17 @@ export default {
     let email = ref('');
     let password = ref('');
 
-    let error = ref('');
+    let {error, createAccount} = useSignup();
 
     let signUp = async () => {
       // console.log(displayName.value, email.value, password.value);
-
-      try{
-
-        let res = await auth.createUserWithEmailAndPassword(email.value, password.value)
-        if(!res){
-          throw new Error('Could not create user');
-        }
+      let res = await createAccount(email.value, password.value, displayName.value);
+      if(res){
+        // console.log(res);
       }
-      catch(err){
-        console.log(err.message);
-        error.value = err.message;
-      }
-
     }
 
-    return { displayName, email, password, signUp }
+    return { displayName, email, password, signUp, error }
 
   }
 }
