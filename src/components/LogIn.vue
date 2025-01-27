@@ -5,6 +5,7 @@
 
       <input type="text" placeholder="Email" required v-model="email">
       <input type="password" placeholder="Password" required v-model="password">
+      <div v-if="error" class="error">{{ error }}</div>
 
       <button type="submit">Log In</button>
     </form>
@@ -13,7 +14,7 @@
 
 <script>
 import { ref } from 'vue';
-
+import useLogin from '../composables/useLogin';
 export default {
 
   setup() {
@@ -21,10 +22,20 @@ export default {
     let email = ref('')
     let password = ref('')
 
-    let login = () => {
-      console.log(email.value),console.log(password.value)}
-    
-    return { email, password, login }
+    let { error, signIN } = useLogin()
+
+    let login = async() => {
+      // console.log(email.value),console.log(password.value)}
+
+      let res = await signIN(email.value, password.value)
+        if(res){
+        console.log(res.user)
+        
+      }
+
+    }
+
+    return { email, password, login, error }
   }
 }
 </script>
