@@ -9,24 +9,14 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { auth } from '../firebase/config';
+
+import useLogout from '../composables/useLogout';
 export default {
     setup() {
-        let error = ref(null);
-        let logout = async () => {
-        // alert('logout')
-        try{
-            await auth.signOut();
-            console.log('user logged out');
-        }
-        catch(err){
-            error.value = err.message
-        }
-        
-    }
 
-    return { logout }
+      let {error, logout} = useLogout();
+
+    return { logout , error }
     }
 
 }
