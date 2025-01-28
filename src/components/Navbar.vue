@@ -14,17 +14,21 @@
 import { ref } from 'vue';
 import getUser from '../composables/getUser';
 import { auth } from '../firebase/config';
+import { useRouter } from 'vue-router';
 
 export default {
     setup() {
         let error = ref(null)
         let { user } = getUser()
+        let router = useRouter()
 
         let logout = async () => {
             try{
                 auth.signOut()
                 console.log('user logged out')
-                }
+                //to welcome page with router
+                router.push({ name: 'Welcome' })
+            }
             catch(err){
                 error.value = err.message
                 console.log(error.value)
