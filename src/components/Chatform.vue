@@ -15,25 +15,33 @@
 import { ref } from 'vue';
 import { auth, timestamp } from '../firebase/config';
 import getUser from '../composables/getUser';
+import useCollection from '../composables/useCollection';
+
 
 export default {
     setup() {
         let message = ref('')
         let { user } = getUser()
+        let { error, addDoc } = useCollection('messages')
 
-        let handlesubmit = () => {
+        let handlesubmit = async () => {
             // alert(message.value)
+            if(message.value){
 
-            let chat = {
+                let chat = {
                 message: message.value,
                 created_at: timestamp(),
                 user: user.value.displayName
+                }
+
+                await addDoc(chat)
+                message.value = ''
             }
-            console.log(chat)
-            message.value = ''
+
+            
         }
 
-        return { message , handlesubmit }
+        return { message , handlesubmit , error , addDoc }
     }
 
 
