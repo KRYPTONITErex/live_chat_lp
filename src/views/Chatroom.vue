@@ -1,16 +1,17 @@
 <template>
 
-<Navbar></Navbar>
-  
-<h1>Chartroom</h1>
+  <Navbar></Navbar>
 
+  <Chatform></Chatform>
 
 </template>
 
 <script>
+import Chatform from '../components/Chatform'
 import Navbar from '../components/Navbar'
 export default {
-  components: { Navbar },
+  components: {
+    Chatform, Navbar },
 
 }
 </script>
