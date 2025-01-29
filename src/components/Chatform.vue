@@ -4,7 +4,7 @@
         <textarea class="chat-input"
             v-model="message" 
             placeholder="Type a message & enter to send"
-            @keydown.enter.prevent="hadlesubmit">
+            @keydown.enter.prevent="handlesubmit">
         </textarea>
     </form>
 
@@ -14,23 +14,29 @@
 import { ref } from 'vue';
 import getUser from '../composables/getUser';
 import { timestamp } from '../firebase/config';
+import useCollection from '../composables/useCollection';
+
 
 export default {
     setup() {
         let message = ref('');
         let {user} = getUser();
+        let {addDoc} = useCollection('messages');
 
-        let hadlesubmit = () => {
+        let handlesubmit = () => {
 
             let chat = {
                 message: message.value.trim(),
                 name: user.value.displayName,
                 createdAt: timestamp()
             }
-            console.log(chat);
+            // console.log(chat);
+            
             message.value = '';
+            addDoc(chat);
+
         }
-        return { message, hadlesubmit }
+        return { message, handlesubmit, user , addDoc }
     }
 
 }
