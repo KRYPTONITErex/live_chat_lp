@@ -22,7 +22,7 @@ export default {
     setup() {
         let message = ref('')
         let { user } = getUser()
-        let { error, addDoc } = useCollection('messages')
+        let { error, addDoc } = useCollection('neWmessages')
 
         let handlesubmit = async () => {
             // alert(message.value)
@@ -62,7 +62,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 30vh;
+    height: 18vh;
 
 }
 
