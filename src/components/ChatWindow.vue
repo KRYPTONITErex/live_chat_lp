@@ -1,9 +1,11 @@
 <template>
   
     <div class="chat-window">
-        <div class="chat-box" v-for="message in formattedMessages" :key="message.id">
-            <span class="createdAt"> {{ message.created_at }}</span>
-            <span class="username"> {{ message.user }} : <span class="message"> {{message.message}}</span> </span>
+        <div class="chat-box">
+            <div class="single" v-for="message in formattedMessages" :key="message.id">
+                <span class="createdAt"> {{ message.created_at }}</span>
+                <span class="username"> {{ message.user }} : <span class="message"> {{message.message}}</span> </span>
+            </div>
         </div>
     </div>
 
@@ -71,11 +73,14 @@ export default {
     height: 100px;
 }
 
+.single {
+    margin: 10px;
+}
+
 .createdAt {
     display: block;
     font-size: 12px;
     color: #999;
-    margin: 10px 0;
 }
 
 .username {
