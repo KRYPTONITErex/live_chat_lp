@@ -1,6 +1,6 @@
 <template>
   <nav v-if="user">
-    <div>
+    <div class="user">
         <p>Hi {{ user.displayName }}</p>
         <p class="email"> Logged in as {{ user.email }} </p>
     </div>
@@ -26,6 +26,11 @@ export default {
 
 <style scoped>
 
+.user {
+  width: 50%;
+  display: flex;
+}
+
 .button {
   background-color: hsl(211, 98%, 50%);
   color: white;
@@ -36,6 +41,16 @@ export default {
   border-radius: 18px 0 18px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease-in-out;
+
+}
+
+.button:hover {
+  background-color: hsl(211, 98%, 40%);
+
+}
+
+p{
+  padding: 20px;
 
 }
 
