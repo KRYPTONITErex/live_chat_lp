@@ -34,6 +34,8 @@ export default {
             
             message.value = '';
             addDoc(chat);
+            
+            
 
         }
         return { message, handlesubmit, user , addDoc }
