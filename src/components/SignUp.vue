@@ -20,9 +20,12 @@
 import { ref } from 'vue';
 
 import useSignup from '../composables/useSignup';
+import { useRouter } from 'vue-router';
 
 export default {
+
   setup() {
+    let router = useRouter();
 
     let displayName = ref('');
     let email = ref('');
@@ -35,6 +38,8 @@ export default {
       let res = await createAccount(email.value, password.value, displayName.value);
       if(res){
         // console.log(res);
+        router.push({name: 'Chatroom'})
+
       }
     }
 
