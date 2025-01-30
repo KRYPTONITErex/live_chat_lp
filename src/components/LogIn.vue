@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <form action="" class="login-form" @submit.prevent="login">
-      <h1>Log In</h1>
+      <h1>Log In to my Project App</h1>
 
       <input type="text" placeholder="Email" required v-model="email">
       <input type="password" placeholder="Password" required v-model="password">
