@@ -5,7 +5,7 @@
                 v-model="message"
                 @keydown.enter.prevent="handlesubmit"
                 class="chat-input"
-                placeholder="type a message & enter to send ..."
+                placeholder="type a message & enter to send ... 📝"
             ></textarea>
         </form>
     </div>
